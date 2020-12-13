@@ -1,0 +1,60 @@
+Nome: Luiza Bretas J Corrêa Luiz    Matrícula: 1911867     Turma: 3WA
+Nome: Pedro Antonio Tibau Velozo    Matrícula: 1812013     Turma: 3WA
+
+- A função cria_func(void* f, DescParam params[], int n) funciona de maneira correta para parametros inteiros,
+porém para parametros do tipo ponteiro apresentou erros em certos testes.
+
+- A função libera_func(void* func) funciona de maneira correta.
+
+Testes realizados:
+    - Dos 3 testes que se encontram no enunciado do projeto no ead, os 2 primeiros funcionam de maneira correta,
+    mas o ultimo dá segmentation fault.
+    Não entendemos o porque do segmentation fault, não encontramos erros em nosso raciocínio e mesmo após várias 
+    tentativas de resolver o problema não obtivemos sucesso.
+
+    - Além dos testes que se encontram no enunciado, realizamos os seguintes testes com sucesso:
+        -teste 1:
+            função: int mult(int x, int y, int z);
+            parametros:
+                params[0].tipo_val = INT_PAR; 
+                params[0].orig_val = PARAM;   
+
+                params[1].tipo_val = INT_PAR;
+                params[1].orig_val = IND;
+                params[1].valor.v_ptr = &i;
+
+                params[2].tipo_val = INT_PAR;
+                params[2].orig_val = PARAM;
+
+        -teste 2:
+            função: int mult(int x, int y);
+            parametros:
+                params1[0].tipo_val = INT_PAR;
+                params1[0].orig_val = IND;
+                params1[0].valor.v_ptr = &i;
+
+                params1[1].tipo_val = INT_PAR;
+                params1[1].orig_val = FIX;
+                params1[1].valor.v_int = 10;
+
+        -teste 3:
+            função: int mult(int x, int y);
+            parametros:
+                params2[0].tipo_val = INT_PAR;
+                params2[0].orig_val = FIX;
+                params2[0].valor.v_int = 10;
+
+                params2[1].tipo_val = INT_PAR;
+                params2[1].orig_val = IND;    
+                params2[1].valor.v_ptr = &i;
+
+        -teste 4:
+            função: int mult(int x, int y, int z);
+                params[0].tipo_val = INT_PAR; 
+                params[0].orig_val = PARAM;   
+
+                params[1].tipo_val = INT_PAR; 
+                params[1].orig_val = PARAM;   
+
+                params[2].tipo_val = INT_PAR; 
+                params[2].orig_val = PARAM;   

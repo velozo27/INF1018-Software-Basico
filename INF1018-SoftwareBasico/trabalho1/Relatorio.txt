@@ -1,0 +1,110 @@
+Nome: Luiza Bretas J Corrêa Luiz    Matrícula: 1911867     Turma: 3WA
+Nome: Pedro Antonio Tibau Velozo    Matrícula: 1812013     Turma: 3WA
+
+Funções:
+    - void big_val (BigInt res, long val); está funcionando
+    exemlpos:
+    TESTE big_val do numero: 1
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 (valor certo!)
+
+    TESTE big_val do numero: -2
+    fe ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff (valor certo!)
+    
+    TESTE big_val do numero: 123456789123456789
+    15 5f d0 ac 4b 9b b6 01 00 00 00 00 00 00 00 00 (valor certo!)
+
+
+    - void big_sum (BigInt res, BigInt a, BigInt b); está funcionando parcialmente, funcionando
+    para valores pequenos, já para valores grandes percebe-se um pequeno erro.
+    exemlpos:
+    TESTE big_sum do numeros: 10 + 11 = 
+    15 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 (valor certo!)
+
+    TESTE big_sum do numeros: -20 + 11 = 
+    f7 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff (valor certo!)
+
+    TESTE big_sum do numeros: 109999 + 111234 = 
+    31 5f 03 00 00 00 00 00 00 00 00 00 00 00 00 00 (valor errado, valor correto seria 31 60 03)    
+
+
+    - void big_comp2(BigInt res, BigInt a); está funcionando parcialmente, acreditamos que 
+    a lógica da função está certa, mas já que ela depende da funcão big_sum (que apresenta erros),
+    o complemento a 2 em certos casos é calculado errado.
+    exemlpos:
+    TESTE big_comp2 do numero: 1
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff (valor certo!)
+    
+    TESTE big_comp2 do numero: 15
+    f1 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff (valor certo!)
+
+    TESTE big_comp2 do numero: 123456789
+    eb 32 a4 f8 ff ff ff ff ff ff ff ff ff ff ff ff (valor errado, valor correto: 15 CD 5B 70 FF FF FF ...)
+    
+
+    - void big_sub (BigInt res, BigInt a, BigInt b); está funcionando parcialmente, acreditamos que 
+    a lógica da função está certa, mas já que ela depende da funcão big_sum (que apresenta erros),
+    a subtração em certos casos é calculada errada.
+    exemlpos:
+    TESTE big_sub do numeros: 10 - 11 = 
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff (valor certo!)
+
+    TESTE big_sub do numeros: -20 - 11 = 
+    e1 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff (valor certo!)
+
+    TESTE big_sub do numeros: 109999 - 111234 = 
+    2f fb ff ff ff ff ff ff ff ff ff ff ff ff ff ff (valor errado, valor correto: 2D FB FF FF FF FF FF ...)
+
+
+    Comentário referente as funções de Operações de Deslocamento para a direita (big_sar, big_shr) estão funcionando
+    da maneira esperada quando o paramêtro "n" recebido for múltiplo de 8, ou seja, as funções são capazes de deslocar bytes, porém
+    não conseguimos desenvolver uma implementação que desloque valores não múltiplos de 8 de maneira correta.
+    
+    - void big_shr (BigInt res, BigInt a, int n);
+    exemlpos:
+    TESTE big_shr do numero: -2 >> 24
+    dump de -2 original:
+    fe ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 
+    dump de -2 depois do shift logico de 24 bits:
+    00 00 00 fe ff ff ff ff ff ff ff ff ff ff ff ff            (valor certo!)
+
+    TESTE big_shr do numero: 123456789 >> 64
+    dump de 123456789 original:
+    15 cd 5b 07 00 00 00 00 00 00 00 00 00 00 00 00 
+    dump de 123456789 depois do shift logico de 64 bits:
+    00 00 00 00 00 00 00 00 15 cd 5b 07 00 00 00 00            (valor certo!)
+
+    TESTE big_shr do numero: 123456789 >> 50
+    dump de 123456789 original:
+    15 cd 5b 07 00 00 00 00 00 00 00 00 00 00 00 00 
+    dump de 123456789 depois do shift logico de 50 bits:
+    00 00 00 00 00 00 15 cd 5b 07 00 00 00 00 00 00            (valor errado)
+
+    
+    - void big_shr (BigInt res, BigInt a, int n);
+    exemlpos:
+    TESTE big_sar do numero: -2 >> 24
+    dump de -2 original:
+    fe ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 
+    dump de -2 depois do shift arimetico de 24 bits:
+    ff ff ff fe ff ff ff ff ff ff ff ff ff ff ff ff              (valor certo!)
+
+    TESTE big_sar do numero: 2 >> 24
+    dump de 2 original:
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 
+    dump de 2 depois do shift arimetico de 24 bits:
+    00 00 00 02 00 00 00 00 00 00 00 00 00 00 00 00              (valor certo!)
+
+    TESTE big_sar do numero: -55 >> 20
+    dump de -55 original:
+    c9 ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff 
+    dump de -55 depois do shift arimetico de 20 bits:
+    ff ff c9 ff ff ff ff ff ff ff ff ff ff ff ff ff              (valor errado)
+
+    
+    - void big_shl (BigInt res, BigInt a, int n); está funcionando parcialmente, acreditamos que 
+    a lógica da função está certa, mas já que ela depende da funcão big_mul (que apresenta erros),
+    a multiplicação é calculada errada.
+
+
+    - void big_mul (BigInt res, BigInt a, BigInt b); não está funcionando, tentamos implementar
+    o algoritmo da multiplicação de Booth, porém não tivemos sucesso.
